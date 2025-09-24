@@ -5,38 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DevStart • Cursos Online</title>
   <link rel="stylesheet" href="/css/estilos.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <nav class="site-tabs">
-  <a class="btn btn--outline" href="/index.html">Home</a>
-  <a class="btn btn--primary" href="/cadastroCurso.html">Cadastro de Curso</a>
-</nav>
-    <div class="site-header__bar">
-      <div class="brand">
-        <img class="brand__logo" src="/img/devstart-logo.svg" alt="DevStart" />
-        <span class="brand__name">DevStart • Cursos Online</span>
-      </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/index.html">
+        <img src="/img/devstart-logo.svg" alt="" height="28">
+        <span>DevStart • Cursos Online</span>
+      </a>
 
-      <form action="/logout" method="post" aria-label="Sair">        
-        <a class="btn btn--primary" href="/login.html" style="margin-right:8px">Login</a>
-        
-      </form>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="topNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/cadastroCurso.html">Cadastro de Curso</a></li>
+          <li class="nav-item">
+            <a class="btn btn-light ms-lg-3" href="/login.html">Login</a>
+          </li>
+        </ul>
     </div>
-  </header>
-
-  <main class="container">
-    <h2>Lista de cursos</h2>
-    <p class="text-muted">
-      Veja os cursos disponíveis. Para visualizar os <strong>detalhes</strong>, é necessário estar autenticado.
-    </p>
-
+  </nav>
+<main class="container my-4">
+  <h2 class="h4">Lista de cursos</h2>
+  <p class="text-muted">
+    Veja os cursos disponíveis. Para visualizar os <strong>detalhes</strong>, é necessário estar autenticado.
+  </p>
+  <div id="home-alert" class="alert alert-danger d-none" role="alert"></div>
     <div id="lista-cursos" class="grid" aria-live="polite"></div>
   </main>
 
   <footer class="site-footer">
     <div class="container">© 2025 — DevStart</div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
  <script type="module" src="/js/home.js"></script>
  

@@ -1,44 +1,56 @@
-import cursos from '/cursoa.js';
+import cursos from '/cursos.js';
 
-function real(v) {
-  return 'R$ ' + Number(v || 0).toFixed(2).replace('.', ',');
+const grid = document.getElementById('lista-cursos');
+const alertBox = document.getElementById('home-alert');
+
+function fmtBR(n) { return Number(n || 0).toFixed(2).replace('.', ','); }
+
+function cardHTML(c) {
+  return `
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <img src="${c.imagem || '/img/cursos/1.svg'}" class="card-img-top" alt="${c.nome}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${c.nome}</h5>
+          <p class="card-text mb-2">${c.descricao || ''}</p>
+          <ul class="list-unstyled small text-muted mb-3">
+            <li><strong>Início:</strong> ${c.inicio}</li>
+            <li><strong>Duração:</strong> ${c.duracao}</li>
+            <li><strong>Nível:</strong> ${c.nivel}</li>
+          </ul>
+          <div class="mt-auto">
+            <div class="fw-bold mb-2">R$ ${fmtBR(c.preco)}</div>
+            <a href="/login.html" class="btn btn-primary w-100">Ver detalhes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
-function renderCursos(lista) {
-  const cont = document.getElementById('lista-cursos');
-  if (!cont) return;
-  cont.innerHTML = '';
+async function carregar() {
+  grid.innerHTML = `
+    <div class="col-12"><div class="text-center text-muted py-3">
+      Carregando...
+    </div></div>`;
 
-  if (!Array.isArray(lista) || lista.length === 0) {
-    cont.innerHTML = '<div class="badge">Nenhum curso disponível.</div>';
-    return;
+  try {
+    const resp = await fetch('/api/cursos', { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const lista = await resp.json();
+
+    if (!Array.isArray(lista) || !lista.length) {
+      grid.innerHTML = `<div class="col-12"><div class="alert alert-info">Nenhum curso cadastrado.</div></div>`;
+      return;
+    }
+
+    grid.innerHTML = lista.map(cardHTML).join('');
+  } catch (err) {
+    alertBox.textContent = 'Falha ao carregar a lista de cursos.';
+    alertBox.classList.remove('d-none');
+    grid.innerHTML = '';
+    console.error(err);
   }
-
-  lista.forEach((c) => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = [
-      '<div class="card__media">',
-      `  <img class="card__img" src="${c.imagem}" alt="Capa do curso ${c.nome}">`,
-      '</div>',
-      '<div class="card__body">',
-      `  <h3 class="card__title">${c.nome}</h3>`,
-      '  <div class="card__meta">',
-      `    <span class="badge">Início: ${c.inicio}</span>`,
-      `    <span class="badge">Duração: ${c.duracao}</span>`,
-      '  </div>',
-      `  <div class="card__price">Preço: ${real(c.preco)}</div>`,
-      '  <div class="card__actions">',
-      `    <a class="btn btn--primary" href="/curso.html?id=${c.id}">Ver detalhes</a>`,
-      '  </div>',
-      '</div>'
-    ].join('\n');
-    cont.appendChild(el);
-  });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cont = document.getElementById('lista-cursos');
-  if (cont) cont.innerHTML = '<span class="badge">Carregando...</span>';
-  renderCursos(cursos);
-});
+carregar();
