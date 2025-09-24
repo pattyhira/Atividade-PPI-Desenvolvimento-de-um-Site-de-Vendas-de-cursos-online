@@ -1,0 +1,28 @@
+{
+  "name": "atividade-ppi-desenvolvimento-de-um-site-de-vendas-de-cursos-online",
+  "version": "1.0.0",
+  "description": "Site de Vendas de Cursos online - DevStart",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pattyhira/Atividade-PPI-Desenvolvimento-de-um-Site-de-Vendas-de-cursos-online.git"
+  },
+  "author": "Patricia Aline Hiraiwa Takata",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pattyhira/Atividade-PPI-Desenvolvimento-de-um-Site-de-Vendas-de-cursos-online/issues"
+  },
+  "homepage": "https://github.com/pattyhira/Atividade-PPI-Desenvolvimento-de-um-Site-de-Vendas-de-cursos-online#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.15.0"
+  },
+  "devDependencies": {}
+}
