@@ -36,19 +36,25 @@
           <div class="card-body">
             <h2 class="h5 mb-3">Cadastro de Curso</h2>
             <form id="formCurso">
-              <input type="hidden" id="id" />
+          
+
+              <div class="mb-3">
+                <label class="form-label required" for="nome">ID</label>
+                <input class="form-control" id="id" placeholder="Digite o ID para o referente curso." required />
+                <div class="invalid-feedback">Informe o ID do curso.</div>
+              </div>
 
               <div class="mb-3">
                 <label class="form-label required" for="nome">Nome</label>
-                <input class="form-control" id="nome" placeholder="Digite o nome do curso." required />
+                <input class="form-control" id="nomeCurso" placeholder="Digite o nome do curso." required />
                 <div class="invalid-feedback">Informe o nome do curso.</div>
               </div>
 
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label required" for="inicio">Início</label>
-                  <input class="form-control" id="inicio" placeholder="dd-mm-aaaa" required />
-                  <div class="invalid-feedback">Use o formato dd-mm-aaaa.</div>
+                  <input class="form-control" id="inicioCurso" placeholder="aaaa-mm-dd" required />
+                  <div class="invalid-feedback">Use o formato aaaa-mm-dd.</div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label required" for="duracao">Duração</label>
@@ -80,32 +86,17 @@
                 </select>
                 <div class="invalid-feedback">Selecione um nível.</div>
                 </div>
-              </div>
+              </div>      
 
-              <div class="mb-3 mt-3">
-                <label class="form-label required" for="instrutor">Instrutor</label>
-                <input class="form-control" id="instrutor" required />
-                <div class="invalid-feedback">Informe o nome do instrutor.</div>
-              </div>
-
-              <div class="mb-8">
-                <label class="form-label required" for="descricao">Descrição</label>
-                <textarea class="form-control" id="descricao" rows="8" required></textarea>
-                <div class="invalid-feedback">Descreva o curso.</div>
-              </div>
-
-              <div class="d-flex gap-2">
+              <div class="d-flex gap-3 mt-4">
                 <button id="btnCadastrar" type="submit" class="btn btn-success">Salvar</button>
-
-                <button type="button" id="limpar" class="btn btn-secondary">Limpar</button>
-
-                <button type="button" id="excluir" class="btn btn-danger d-none">Excluir</button>
+                
               </div>
             </form>
           </div>
         </div>
       </div>
-      
+            
       <div class="col-12 col-lg-7">
         <div class="card shadow-sm">
           <div class="card-body">
@@ -114,20 +105,7 @@
               <button id="recarregar" class="btn btn--primary btn-sm">Recarregar</button>
             </div>
             <div class="table-responsive">
-              <table id="tabela" class="table table-striped align-middle">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Início</th>
-                    <th>Duração</th>
-                    <th>Preço</th>
-                    <th>Vagas</th>
-                    <th>Nível</th>
-                    <th style="width:110px">Ações</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
+              <table id="tabela" class="table table-striped align-middle"> 
               </table>
             </div>
           </div>
@@ -142,9 +120,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="./admin.js" type="module"></script>
-
-<script src="js/curso.js"></script>
+<script src="js/curso.js" type="module"></script>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
